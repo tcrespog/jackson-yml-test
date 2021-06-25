@@ -1,0 +1,38 @@
+plugins {
+    id("application")
+    id("java")
+}
+
+version = "0.1"
+group = "jackson.yml.test"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('com.fasterxml.jackson:jackson-bom:2.12.3')
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
+
+    testImplementation platform('org.junit:junit-bom:5.7.2')
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+application {
+    mainClass.set("jackson.yml.test.Application")
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("1.8")
+    targetCompatibility = JavaVersion.toVersion("1.8")
+}
+
+
+
